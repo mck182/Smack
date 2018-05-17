@@ -56,7 +56,7 @@ public abstract class AbstractDebugger extends SmackDebugger {
         readerListener = new ReaderListener() {
             @Override
             public void read(String str) {
-                log("RECV (" + connection.getConnectionCounter() + "): " + str);
+                log("RECV (" + connection.getConnectionCounter() + "/" + Thread.currentThread() + "): " + str);
             }
         };
         this.reader.addReaderListener(readerListener);
@@ -66,7 +66,7 @@ public abstract class AbstractDebugger extends SmackDebugger {
         writerListener = new WriterListener() {
             @Override
             public void write(String str) {
-                log("SENT (" + connection.getConnectionCounter() + "): " + str);
+                log("SENT (" + connection.getConnectionCounter() + "/" + Thread.currentThread() + "): " + str);
             }
         };
         this.writer.addWriterListener(writerListener);
